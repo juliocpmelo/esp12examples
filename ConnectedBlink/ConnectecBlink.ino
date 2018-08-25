@@ -15,6 +15,9 @@
 char *ssid = "nome da rede";
 char *password = "senha";
 
+IPAddress server_addr(192,168,1,10);
+
+
 void setup() 
 {
   
@@ -34,8 +37,33 @@ void setup()
 }
 
 void loop() {
-  digitalWrite(LED_BUILTIN, LOW);   // Turn the LED on (Note that LOW is the voltage level
-  delay(1000);                      // Wait for a second
-  digitalWrite(LED_BUILTIN, HIGH);  // Turn the LED off by making the voltage HIGH
-  delay(2000);                      // Wait for two seconds (to demonstrate the active low LED)
+WiFiClient client;
+
+  Serial.printf("\n[Connecting to %s ... ", host);
+  if (client.connect(server_addr, 80))
+  {
+    Serial.println("connected]");
+
+    Serial.println("[Sending a request]");
+    client.print("ola!");
+
+    Serial.println("[Response:]");
+    while (client.connected())
+    {
+      if (client.available())
+      {
+        String line = client.readStringUntil('\n');
+        Serial.println(line);
+      }
+    }
+    client.stop();
+    Serial.println("\n[Disconnected]");
+  }
+  else
+  {
+    Serial.println("connection failed!]");
+    client.stop();
+  }
+  delay(5000);
+
 }
