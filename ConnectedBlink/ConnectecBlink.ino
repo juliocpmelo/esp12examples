@@ -39,7 +39,7 @@ void setup()
 void loop() {
 WiFiClient client;
 
-  Serial.printf("\n[Connecting to %s ... ", host);
+  Serial.printf("\n[Connecting... ");
   if (client.connect(server_addr, 80))
   {
     Serial.println("connected]");
