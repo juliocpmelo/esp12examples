@@ -36,7 +36,7 @@ void loop() {
   WiFiClient client;
 
   Serial.printf("\n[Connecting... ");
-  if (client.connect(server_addr, serve_port))
+  if (client.connect(server_addr, server_port))
   {
     Serial.println("connected]");
 
