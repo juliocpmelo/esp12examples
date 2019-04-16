@@ -6,7 +6,7 @@ s = socket.socket(socket.AF_INET,
                   socket.SOCK_STREAM)
 
 # get local Host machine name
-host = '127.0.0.1' # or just use (host == '')
+host = '' # or just use (host == '')
 port = 9999
 
 print("creating server at " + host + " " + str(port))

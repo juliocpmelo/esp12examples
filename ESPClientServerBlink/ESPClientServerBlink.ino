@@ -1,12 +1,8 @@
 /*
- ESP8266 Blink by Simon Peter
- Blink the blue LED on the ESP-01 module
- This example code is in the public domain
- 
- The blue LED on the ESP-01 module is connected to GPIO1 
- (which is also the TXD pin; so we cannot use Serial.print() at the same time)
- 
- Note that this sketch uses LED_BUILTIN to find the pin with the internal LED
+!author Julio Melo
+!brief this example shows how to connect ESP with an external server
+       located on the server_addr address on port server_port. This example
+       is meant to execute together with the pythonServer.py on this folder.
 */
 
 
@@ -15,14 +11,14 @@
 char *ssid = "nome da rede";
 char *password = "senha";
 
+/*endereço do servidor*/
 IPAddress server_addr(192,168,1,10);
-
+int server_port = 9999;
 
 void setup() 
 {
   
   Serial.begin(115200);
-  pinMode(LED_BUILTIN, OUTPUT);     // Initialize the LED_BUILTIN pin as an output
 
   /*connect to WiFi*/
   WiFi.begin(ssid, password);
@@ -37,10 +33,10 @@ void setup()
 }
 
 void loop() {
-WiFiClient client;
+  WiFiClient client;
 
   Serial.printf("\n[Connecting... ");
-  if (client.connect(server_addr, 80))
+  if (client.connect(server_addr, serve_port))
   {
     Serial.println("connected]");
 
