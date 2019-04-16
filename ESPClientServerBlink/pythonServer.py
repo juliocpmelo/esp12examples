@@ -23,7 +23,7 @@ while True:
         # establish connection
         data = conn.recv(1024)
         #sends data back to the client
-        print("got " + data + "from client " + str(addr))
+        print("got " + str(data) + "from client " + str(addr))
         conn.sendall(data);
         if not data:
             break
