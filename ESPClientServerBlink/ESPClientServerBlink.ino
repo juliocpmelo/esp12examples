@@ -33,32 +33,32 @@ void setup()
 }
 
 void loop() {
-  WiFiClient client;
+  WiFiClient connection;
 
   Serial.printf("\n[Connecting... ");
-  if (client.connect(server_addr, server_port))
+  if (connection.connect(server_addr, server_port))
   {
     Serial.println("connected]");
 
     Serial.println("[Sending a request]");
-    client.print("ola!");
+    connection.print("ola!");
 
     Serial.println("[Response:]");
-    while (client.connected())
+    while (connection.connected())
     {
-      if (client.available())
+      if (connection.available())
       {
-        String line = client.readStringUntil('\n');
+        String line = connection.readStringUntil('\n');
         Serial.println(line);
       }
     }
-    client.stop();
+    connection.stop();
     Serial.println("\n[Disconnected]");
   }
   else
   {
     Serial.println("connection failed!]");
-    client.stop();
+    connection.stop();
   }
   delay(5000);
 
