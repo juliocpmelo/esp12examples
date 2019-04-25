@@ -7,7 +7,7 @@ Adapted from https://techtutorialsx.com/2018/06/02/esp8266-arduino-socket-server
 const char* ssid = "yourNetworkName";
 const char* password =  "yourNetworkPass";
  
-WiFiServer wifiServer(80);
+WiFiServer wifiServer(9999);
  
 void setup() {
  
