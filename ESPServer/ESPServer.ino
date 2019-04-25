@@ -40,7 +40,8 @@ void loop() {
         String line = client.readStringUntil('\n');
         Serial.println(line);
         /*writes back to the client*/
-        client.println(line);
+        line[line.size()-1] = '\0'; //removes '\n' from response
+	client.print(line);
       }
  
       delay(10);
